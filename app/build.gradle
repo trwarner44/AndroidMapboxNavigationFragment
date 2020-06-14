@@ -55,4 +55,7 @@ dependencies {
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.5'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'
+
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 }

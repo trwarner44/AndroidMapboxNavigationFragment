@@ -24,15 +24,20 @@ import com.warnerdesigntechnology.demoandroidmapboxnavigationfragment.R
 import kotlinx.android.synthetic.main.navigation_view_fragment_layout.view.*
 import retrofit2.Call
 import retrofit2.Response
+import com.warnerdesigntechnology.demoandroidmapboxnavigationfragment.ui.home.mapboxAccessToken
 
 class HomeFragment: Fragment(),
     OnNavigationReadyCallback, NavigationListener, ProgressChangeListener {
+
     private var navigationView: com.mapbox.services.android.navigation.ui.v5.NavigationView? = null
     private var directionsRoute: DirectionsRoute? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Mapbox.getInstance(requireContext(), mapboxAccessToken)
+
         return inflater.inflate(R.layout.navigation_view_fragment_layout, container, false)
     }
 
@@ -59,6 +64,7 @@ class HomeFragment: Fragment(),
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        println("on save instance state")
         navigationView!!.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
@@ -145,7 +151,7 @@ class HomeFragment: Fragment(),
 
     private fun fetchRoute(origin: Point, destination: Point) {
         NavigationRoute.builder(context)
-            .accessToken(Mapbox.getAccessToken())
+            .accessToken(mapboxAccessToken)
             .origin(origin)
             .destination(destination)
             .build()
