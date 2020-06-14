@@ -1,0 +1,2 @@
+rootProject.name='DemoAndroidMapboxNavigationFragment'
+include ':app'
